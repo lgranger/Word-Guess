@@ -49,7 +49,7 @@ class Game
     end
   end
 
-  def random_word_gen
+  def random_word_gen (difficulty)
     random_words = ["kitten", "litter", "catnip", "mouse", "mice", "tuna", "birds", "lynx", "cheetah", "lion", "tiger", "leopard", "feline", "purr", "water", "liger", "catcall", "catnap", "catwalk", "copycat", "hellcat", "tabby", "tomcat", "purr", "string", "scratch", "companion", "hairball", "furball", "calico", "frisky", "purring", "siamese", "whiskers", "meows"]
 
     rand_array =[]
@@ -66,9 +66,9 @@ class Game
     when "medium"
       random_word = rand_array[1]
     when "hard"
-      random_word = rand_array[3]
+      random_word = rand_array[2]
     end
-    return random_word
+    #return random_word
   end
 
   def guess
@@ -79,8 +79,25 @@ class Game
     letters_guessed = []
     guessing = true
     word_state = []
-    random_word = random_word_gen
-    puts random_word
+    puts "What difficulty would you like to play?"
+    puts "1. Easy"
+    puts "2. Medium"
+    puts "3. Hard"
+    difficulty = gets.chomp.downcase
+    case difficulty
+    when "1" || "easy"
+      random_word = random_word_gen("easy")
+    when "2" || "medium"
+      random_word = random_word_gen("medium")
+    when "3" || "hard"
+      random_word = random_word_gen("hard")
+    else
+      puts "That wasn't on the list. Try the medium level."
+      sleep(3)
+      random_word = random_word_gen("medium")
+    end
+    #puts random_word
+
     random_word.length.times do
       word_state.push(" _ ")
     end

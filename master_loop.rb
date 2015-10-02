@@ -1,6 +1,6 @@
 require 'pry'
 require './game_board_v2.rb'
-require "./game_board.rb"
+#require "./game_board.rb"
 
 
 class Game

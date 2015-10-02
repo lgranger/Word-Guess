@@ -1,3 +1,4 @@
+<<<<<<< HEAD
 ✅ Need to return list of already guessed letters
 ✅ Need to sanitize user input
 ✅ Add more words to random word array
@@ -5,7 +6,7 @@
 Optional:
 ✅ Don't penalize for guessing the same letter more than once
 * Add difficulty levels (harder levels have words with more letters)
-* Allow the user to enter a whole word as input (of they think they know the answer)
+✅ Allow the user to enter a whole word as input (of they think they know the answer)
 
 even moar optional:
 * make the guess into a separate class

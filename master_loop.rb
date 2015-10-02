@@ -80,14 +80,11 @@ class Game
     guessing = true
     word_state = []
     random_word = random_word_gen
+    puts random_word
     random_word.length.times do
       word_state.push(" _ ")
     end
     shown_answer = word_state.join(",").tr(",",'')
-
-    #puts shown_answer
-
-    #puts random_word
 
 
     while guessing == true
@@ -103,21 +100,45 @@ class Game
         print "\n"
       end
       board.print_board(@cat_state)
-
+      puts "If you think you know the whole word, type \"word = GUESS\""
+      puts "And replace GUESS with your guess."
       print "Guess a letter: "
-      # Need to sanitize this
 
       user_input_check = gets.chomp
 
       while user_input_check != "quit"
-        if user_input_check.length != 1
+        if user_input_check == "word = " + random_word
+          puts "You won the game!"
+          guessing = "false"
+          board.print_board("win")
+          play_again_prompt
+        elsif user_input_check.to_s.include? "word ="
+          @cat_state -= 1
+          print %x{clear}
+          puts shown_answer
+          puts "Your guess was wrong!"
+          board.print_board(@cat_state)
+          puts "If you think you know the whole word, type \"word = GUESS\""
+          puts "And replace GUESS with your guess."
+          print "Guess a letter: "
+          if @cat_state == 0
+            puts "\n\n"
+            puts "You lose! You are the worst!"
+            puts "The word was #{random_word}"
+            board.print_board(0)
+            guessing = "false"
+            play_again_prompt
+          end
+          user_input_check = gets.chomp
+          #puts "I'm stuck!"
+        elsif user_input_check.length != 1
           puts "One letter only please!"
           user_input_check = gets.chomp
         elsif user_input_check.to_i.to_s != "0"
           puts "Please guess a letter, numbers aren't letters!"
           user_input_check = gets.chomp
         else
-          user_input = user_input_check
+          user_input = user_input_check.downcase
           user_input_check = "quit"
         end
       end

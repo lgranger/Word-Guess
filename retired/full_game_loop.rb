@@ -1,3 +1,5 @@
+# RETIRED: built into master_loop
+
 #require './random_word_gen.rb'
 #require './draw_cat.rb'
 require './game_loop.rb'

@@ -1,3 +1,5 @@
+#built into master_loop
+
 require './user_input.rb'
 
 def game_loop

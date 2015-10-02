@@ -1,3 +1,5 @@
+# This has now been built into master_loop.rb
+
 cat_state = 10
 
 def guess

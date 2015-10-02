@@ -1,4 +1,4 @@
-
+#built into master_loop
 
 def random_word_gen
   random_words = ["kitten", "litter", "catnip", "mouse", "mice", "tuna", "birds"]

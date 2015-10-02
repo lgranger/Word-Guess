@@ -1,3 +1,7 @@
+# Running Jessica and Lauren's Word-Guess Game
+To run the game, just call "ruby master_loop.rb" from the Terminal
+
+
 # Word-Guess Game
 
 Create a game which will allow the user to guess a word and get ASCII-art as feedback on their guesses.

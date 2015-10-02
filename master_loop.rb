@@ -19,8 +19,6 @@ class Game
   #   play_game
   end
 
-
-
   def play_game_prompt
     puts "\n\n"
     print "Would you like to play a game of Word Guess?  "
@@ -93,14 +91,29 @@ class Game
 
       print "Guess a letter: "
       # Need to sanitize this
-      user_input = gets.chomp
+
+      user_input_check = gets.chomp
+
+      while user_input_check != "quit"
+        if user_input_check.length != 1
+          puts "One letter only please!"
+          user_input_check = gets.chomp
+        elsif user_input_check.to_i.to_s != "0"
+          puts "Please guess a letter, numbers aren't letters!"
+          user_input_check = gets.chomp
+        else
+          user_input = user_input_check
+          user_input_check = "quit"
+        end
+      end
+
       while letters_guessed.include? user_input
         puts "You already guessed that letter!"
         puts "Guess a different letter"
-        puts "\n\n"
         user_input = gets.chomp
       end
       letters_guessed.push(user_input)
+
       if random_word.include?(user_input)
         #change the word_state to the new version with the updated letter
         word_state.length.times do |letter|

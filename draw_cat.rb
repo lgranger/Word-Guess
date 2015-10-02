@@ -481,7 +481,7 @@ print"     o".magenta
 print"       +".cyan
 print"        o".magenta
 print"  \n"
-print "       YOU LOSE. YOU KILLED THE CAT.        \n".light_black
+print "  YOU KILLED NYAN CAT. YOU LOSE.     \n".light_black
 print "+".cyan
 print"      o".magenta
 print"         o".magenta
@@ -522,10 +522,8 @@ print"  \n".blink
 print "o".magenta.blink
 print"          +".cyan.blink
 print"                       \n".blink
-print "    o".magenta.blink
-print"  +".cyan.blink
-print"           +".cyan.blink
-print"        +".cyan.blink
+print " YOU WIN!!!  ".magenta.blink
+print"NYAN CAT FOREVER!!".cyan.blink
 print"      \n".blink
 print "+".cyan.blink
 print"        o".magenta.blink

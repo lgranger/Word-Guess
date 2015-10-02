@@ -96,7 +96,7 @@ class Game
       sleep(3)
       random_word = random_word_gen("medium")
     end
-    #puts random_word
+    puts random_word
 
     random_word.length.times do
       word_state.push(" _ ")
@@ -110,7 +110,7 @@ class Game
       if letters_guessed == []
         puts "You have not guessed any letters yet"
       else
-        print "So far, you have guessed: "
+        print "So far you have guessed: "
         letters_guessed.each do |i|
           print " #{i} "
         end
@@ -124,16 +124,20 @@ class Game
       user_input_check = gets.chomp
 
       while user_input_check != "quit"
-        if user_input_check == "word = " + random_word
+        if user_input_check.downcase == "word = " + random_word
           puts "You won the game!"
           guessing = "false"
           board.print_board("win")
           play_again_prompt
-        elsif user_input_check.to_s.include? "word ="
+        elsif user_input_check.to_s.downcase.include? "word ="
           @cat_state -= 1
           print %x{clear}
-          puts shown_answer
           puts "Your guess was wrong!"
+          puts shown_answer
+          print "So far you have guessed: "
+          letters_guessed.each do |i|
+            print " #{i} "
+          end          
           board.print_board(@cat_state)
           puts "If you think you know the whole word, type \"word = GUESS\""
           puts "And replace GUESS with your guess."

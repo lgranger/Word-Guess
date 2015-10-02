@@ -1,14 +1,17 @@
 require 'pry'
 
 class Game
-  attr_reader
+  attr_accessor :game_status
 
   def initialize
-
+    @game_status = false
   end
 
   def play
     play_game_prompt
+    while @game_status == true
+      play_again_prompt
+    end
   #   play_game
   end
 
@@ -37,7 +40,7 @@ class Game
         exit
       else
         puts "Sorry I didn't understand what you said."
-        print "Would you like to play a game of Word Guess?"
+        print "Would you like to play a game of Word Guess?  "
         answer = gets.chomp.downcase
       end
     end
@@ -52,7 +55,6 @@ class Game
   def guess
     #asks user for a letter guess
     cat_state = 5
-    game_status = "unknown"
     guessing = true
     word_state = []
     random_word = random_word_gen
@@ -86,7 +88,7 @@ class Game
         elsif cat_state == 1
           cat_state -= 1
           guessing = false
-          game_status = "loss"
+          @game_status = true
           puts "You lose! You are the worst!"
           guessing = "false"
           #@game_status = "loss"
@@ -96,7 +98,7 @@ class Game
       #puts shown_answer
       if shown_answer.tr(" ",'') == random_word
 
-        game_status = "win"
+        @game_status = true
         puts "You won the game!"
         guessing = "false"
       end

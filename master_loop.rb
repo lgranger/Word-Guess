@@ -104,6 +104,7 @@ class Game
       random_word = random_word_gen("hard")
     else
       puts "That wasn't on the list. Try the medium level."
+      # waits 3 seconds before clearing the screen
       sleep(3)
       random_word = random_word_gen("medium")
     end

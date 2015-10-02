@@ -481,7 +481,7 @@ print"     o".magenta
 print"       +".cyan
 print"        o".magenta
 print"  \n"
-print "YOU LOOSE           \n".light_black
+print "YOU LOSE. YOU KILLED THE CAT.           \n".light_black
 print "+".cyan
 print"      o".magenta
 print"         o".magenta

@@ -22,11 +22,13 @@ class Game
 
 
   def play_game_prompt
+    puts "\n\n"
     print "Would you like to play a game of Word Guess?  "
     check_input_to_prompt
   end
 
   def play_again_prompt
+    puts "\n\n"
     print "Would you like to play another game of Word Guess? "
     check_input_to_prompt
   end
@@ -60,6 +62,7 @@ class Game
     #asks user for a letter guess
 
     board = GameBoard.new
+    @cat_state = 6
 
     guessing = true
     word_state = []
@@ -73,8 +76,9 @@ class Game
 
     #puts random_word
 
-    while guessing == true
 
+    while guessing == true
+      puts shown_answer
       board.print_board(@cat_state)
 
       print "Guess a letter: "
@@ -97,7 +101,10 @@ class Game
           @cat_state -= 1
           guessing = false
           @game_status = true
+          puts "\n\n"
           puts "You lose! You are the worst!"
+          puts "The word was #{random_word}"
+          board.print_board(0)
           guessing = "false"
           #@game_status = "loss"
         end
@@ -107,10 +114,12 @@ class Game
       if shown_answer.tr(" ",'') == random_word
 
         @game_status = true
+        puts "\n\n"
         puts "You won the game!"
         guessing = "false"
+        board.print_board("win")
       end
-      puts shown_answer
+      #puts shown_answer
     end
   end
 end

@@ -24,6 +24,8 @@ def print_board(cat_state)
       picture.cat_one
     when 0
       picture.cat_dead
+    when "win"
+      picture.cat_win
   end
 
   #picture.cat_six

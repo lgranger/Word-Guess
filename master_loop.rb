@@ -63,7 +63,7 @@ class Game
 
     board = GameBoard.new
     @cat_state = 6
-
+    letters_guessed = []
     guessing = true
     word_state = []
     random_word = random_word_gen
@@ -80,12 +80,21 @@ class Game
     while guessing == true
       print %x{clear}
       puts shown_answer
+      if letters_guessed == []
+        puts "You have not guessed any letters yet"
+      else
+        print "So far, you have guessed: "
+        letters_guessed.each do |i|
+          print " #{i} "
+        end
+        print "\n"
+      end
       board.print_board(@cat_state)
 
       print "Guess a letter: "
       # Need to sanitize this
       user_input = gets.chomp
-
+      letters_guessed.push(user_input)
       if random_word.include?(user_input)
         #change the word_state to the new version with the updated letter
         word_state.length.times do |letter|

@@ -1,10 +1,13 @@
+# brings in the nyan cat ascii art
 require "./draw_cat.rb"
 
 class GameBoard
 
+# initallize the gameboard with nothing
   def initialize
   end
 
+# prints the game board/cat pictures
   def print_board(cat_state)
     picture = NyanCat.new
     case cat_state

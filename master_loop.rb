@@ -1,10 +1,12 @@
 require 'pry'
+require './game_board_v2.rb'
 
 class Game
   attr_accessor :game_status
 
   def initialize
     @game_status = false
+    @cat_state = 6
   end
 
   def play
@@ -54,7 +56,9 @@ class Game
 
   def guess
     #asks user for a letter guess
-    cat_state = 5
+    a = GameBoard.new
+
+    #cat_state = 5
     guessing = true
     word_state = []
     random_word = random_word_gen
@@ -68,7 +72,8 @@ class Game
     puts random_word
 
     while guessing == true
-
+      a = GameBoard.new
+      a.print_board(@cat_state)
       print "Guess a letter: "
       # Need to sanitize this
       user_input = gets.chomp
@@ -82,11 +87,10 @@ class Game
         end
       else
         #decriment nyan cat -= 1
-        if cat_state > 1
-          cat_state -= 1
-          #@user_input_array.push(user_input)
-        elsif cat_state == 1
-          cat_state -= 1
+        if @cat_state > 1
+          @cat_state -= 1
+        elsif @cat_state == 1
+          @cat_state -= 1
           guessing = false
           @game_status = true
           puts "You lose! You are the worst!"

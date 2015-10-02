@@ -4,14 +4,14 @@ distpaly_cat_state >> method for displaying current cat_state
 word_state << this will mean the word being guessed, as represented to the user. ex: "_ _ _ _" or "_ a _ _"
   ->> user_imput
 
-user_imput >> string provided by the user
-user_imput_array >> array of previous user input
+lg>>  user_imput >> string provided by the user
+lg>>  user_imput_array >> array of previous user input
+---------
+random_word << the word that the user is guessing. ex: "soup" or "bark"
 
-guess_word << the word that the user is guessing. ex: "soup" or "bark"
-
-guess_word_array << where to store and pull from the words possible as guess_words for the game
-
+X >> random_words_array << where to store and pull from the words possible as guess_words for the game
+---------
 cat_state << var representing the current state & ascii output of the nyan cat
 
-master_loop >> if game_loop == false, ask if wants new game
+jn>>   master_loop >> if game_loop == false, ask if wants new game
 game_loop >> run until word_state == guess_word || cat_state == 0 # 0 being no colors left.

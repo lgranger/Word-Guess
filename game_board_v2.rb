@@ -3,8 +3,6 @@ require "./draw_cat.rb"
 class GameBoard
 
   def initialize
-    #@word_state = "__ __ T" #@random_word.length
-    #@cat_state = 5
   end
 
   def print_board(cat_state)

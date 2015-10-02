@@ -1,3 +1,4 @@
+# built into draw_cat
 
   +      o     +              o
     +             o     +       +
@@ -12,4 +13,4 @@ _-_-_-_-_-_-_-""  ""
     +         +
 o        o         o      o     +
     o           +
-+      +     o        o      +    
++      +     o        o      +

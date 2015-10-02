@@ -1,3 +1,5 @@
+#RETIRED: game structure complete!
+
 display_word_state >> method for displaying current word_state
 distpaly_cat_state >> method for displaying current cat_state
 

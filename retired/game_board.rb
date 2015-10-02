@@ -1,3 +1,5 @@
+#RETIRED: updated to gaem_board_v2.rb
+
 require "./draw_cat.rb"
 
 class GameBoard

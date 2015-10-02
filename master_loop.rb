@@ -78,6 +78,7 @@ class Game
 
 
     while guessing == true
+      print %x{clear}
       puts shown_answer
       board.print_board(@cat_state)
 

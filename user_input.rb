@@ -1,6 +1,9 @@
+cat_state = 10
+
 def guess
   #asks user for a letter guess
-  print "guess a letter: "
+  random_word = random_word_gen
+  print "Guess a letter: "
   user_input = gets
   if random_word.include?(user_input)
     #change the word_state to the new version with the updated letter
@@ -25,3 +28,5 @@ def guess
     end
   end
 end
+
+guess

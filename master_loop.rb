@@ -94,6 +94,12 @@ class Game
       print "Guess a letter: "
       # Need to sanitize this
       user_input = gets.chomp
+      while letters_guessed.include? user_input
+        puts "You already guessed that letter!"
+        puts "Guess a different letter"
+        puts "\n\n"
+        user_input = gets.chomp
+      end
       letters_guessed.push(user_input)
       if random_word.include?(user_input)
         #change the word_state to the new version with the updated letter
@@ -130,6 +136,7 @@ class Game
         board.print_board("win")
       end
       #puts shown_answer
+
     end
   end
 end

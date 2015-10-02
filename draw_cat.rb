@@ -1,5 +1,8 @@
 require "colorize"
+
 class NyanCat
+
+attr_accessor :cat_state
 
 def initialize
   @cat_state = 6

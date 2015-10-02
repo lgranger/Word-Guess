@@ -1,6 +1,6 @@
 * Need to return list of already guessed letters
 * Need to sanitize user input
-* Add more words to random word array
+* Add more words to random work
 
 Optional:
 * Don't penalize for guessing the same letter more than once

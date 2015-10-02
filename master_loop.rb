@@ -16,7 +16,6 @@ class Game
     while @game_status == true
       play_again_prompt
     end
-  #   play_game
   end
 
   def play_game_prompt
@@ -51,8 +50,24 @@ class Game
   end
 
   def random_word_gen
-    random_words = ["kitten", "litter", "catnip", "mouse", "mice", "tuna", "birds", "lynx", "cheetah", "lion", "tiger", "leopard", "feline", "purr", "water", "foxes", "liger", "catcall", "catnap", "catwalk", "copycat", "hellcat", "tabby", "tomcat", "purr", "string", "scratch", "companion", "hairball", "furball", "calico", "frisky", "purring", "siamese", "whiskers", "meows"]
-    random_word = random_words[rand(0...random_words.length)]
+    random_words = ["kitten", "litter", "catnip", "mouse", "mice", "tuna", "birds", "lynx", "cheetah", "lion", "tiger", "leopard", "feline", "purr", "water", "liger", "catcall", "catnap", "catwalk", "copycat", "hellcat", "tabby", "tomcat", "purr", "string", "scratch", "companion", "hairball", "furball", "calico", "frisky", "purring", "siamese", "whiskers", "meows"]
+
+    rand_array =[]
+    3.times do
+      randomize = random_words[rand(0...random_words.length)]
+      rand_array.push(randomize)
+    end
+
+    rand_array = rand_array.sort_by {|x| x.length}
+
+    case difficulty
+    when "easy"
+      random_word = rand_array[0]
+    when "medium"
+      random_word = rand_array[1]
+    when "hard"
+      random_word = rand_array[3]
+    end
     return random_word
   end
 

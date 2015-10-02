@@ -1,32 +1,111 @@
-# THIS NEEDS TO BE SET BASED ON THE ACTUAL GAME STATUS
-# Game Status should either be first_game, win, or loss
-game_status = "UNKNOWN"
+require 'pry'
 
-if game_status == "UNKNOWN" # This is the first game case
-  game_grammar = "a"
-else
-  game_grammar = "another" # This is the case for all subsequent games
-end
+class Game
+  attr_reader
 
-def new_game_prompt(game_grammar)
-  # Gets user input - checks that it is either "Yes" or "No"
-  puts "Would you like to play #{game_grammar} game of Word Guess?  "
-  answer = gets.chomp.downcase
-  answer_valid = false
-  while answer_valid != true
-    if answer == 'yes' || answer == 'y'
-      answer_valid = true
-      # NEED TO ADD PLAY GAME CALL HERE
-    elsif answer == 'no' || answer == 'n'
-      answer_valid = "valid"
-      puts "Maybe next time!"
-      exit
-    else
-      puts "Sorry I didn't understand what you said."
-      puts "Would you like to play #{game_grammar} game of Word Guess?"
-      answer = gets.chomp.downcase
+  def initialize
+
+  end
+
+  def play
+    play_game_prompt
+  #   play_game
+  end
+
+
+
+  def play_game_prompt
+    print "Would you like to play a game of Word Guess?  "
+    check_input_to_prompt
+  end
+
+  def play_again_prompt
+    print "Would you like to play another game of Word Guess? "
+    check_input_to_prompt
+  end
+
+  def check_input_to_prompt
+    answer = gets.chomp.downcase
+    answer_valid = false
+    while answer_valid != true
+      if answer == 'yes' || answer == 'y'
+        answer_valid = true
+        guess
+      elsif answer == 'no' || answer == 'n'
+        answer_valid = "valid"
+        puts "Maybe next time!"
+        exit
+      else
+        puts "Sorry I didn't understand what you said."
+        print "Would you like to play a game of Word Guess?"
+        answer = gets.chomp.downcase
+      end
+    end
+  end
+
+  def random_word_gen
+    random_words = ["kitten", "litter", "catnip", "mouse", "mice", "tuna", "birds"]
+    random_word = random_words[rand(0...random_words.length)]
+    return random_word
+  end
+
+  def guess
+    #asks user for a letter guess
+    cat_state = 5
+    game_status = "unknown"
+    guessing = true
+    word_state = []
+    random_word = random_word_gen
+    random_word.length.times do
+      word_state.push(" _ ")
+    end
+    shown_answer = word_state.join(",").tr(",",'')
+
+    puts shown_answer
+
+    puts random_word
+
+    while guessing == true
+
+      print "Guess a letter: "
+      # Need to sanitize this
+      user_input = gets.chomp
+
+      if random_word.include?(user_input)
+        #change the word_state to the new version with the updated letter
+        word_state.length.times do |letter|
+          if random_word[letter] == user_input
+            word_state[letter] = " " + user_input + " "
+          end
+        end
+      else
+        #decriment nyan cat -= 1
+        if cat_state > 1
+          cat_state -= 1
+          #@user_input_array.push(user_input)
+        elsif cat_state == 1
+          cat_state -= 1
+          guessing = false
+          game_status = "loss"
+          puts "You lose! You are the worst!"
+          guessing = "false"
+          #@game_status = "loss"
+        end
+      end
+      shown_answer = word_state.join(",").tr(",",'')
+      #puts shown_answer
+      if shown_answer.tr(" ",'') == random_word
+
+        game_status = "win"
+        puts "You won the game!"
+        guessing = "false"
+      end
+      puts shown_answer
     end
   end
 end
 
-new_game_prompt("another")
+
+a = Game.new
+a.play
+#a.guess

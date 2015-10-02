@@ -522,7 +522,7 @@ print"  \n".blink
 print "o".magenta.blink
 print"          +".cyan.blink
 print"                       \n".blink
-print " YOU WIN!!!    o".magenta.blink
+print " YOU WIN!!!  ".magenta.blink
 print"NYAN CAT FOREVER!!".cyan.blink
 print"      \n".blink
 print "+".cyan.blink

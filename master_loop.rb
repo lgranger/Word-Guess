@@ -51,7 +51,7 @@ class Game
   end
 
   def random_word_gen
-    random_words = ["kitten", "litter", "catnip", "mouse", "mice", "tuna", "birds"]
+    random_words = ["kitten", "litter", "catnip", "mouse", "mice", "tuna", "birds", "lynx", "cheetah", "lion", "tiger", "leopard", "feline", "purr", "water", "foxes", "liger", "catcall", "catnap", "catwalk", "copycat", "hellcat", "tabby", "tomcat", "purr", "string", "scratch", "companion", "hairball", "furball", "calico", "frisky", "purring", "siamese", "whiskers", "meows"]
     random_word = random_words[rand(0...random_words.length)]
     return random_word
   end
@@ -61,7 +61,7 @@ class Game
 
     board = GameBoard.new
     @cat_state = 6
-
+    letters_guessed = []
     guessing = true
     word_state = []
     random_word = random_word_gen
@@ -78,10 +78,20 @@ class Game
     while guessing == true
       print %x{clear}
       puts shown_answer
+      if letters_guessed == []
+        puts "You have not guessed any letters yet"
+      else
+        print "So far, you have guessed: "
+        letters_guessed.each do |i|
+          print " #{i} "
+        end
+        print "\n"
+      end
       board.print_board(@cat_state)
 
       print "Guess a letter: "
       # Need to sanitize this
+
       user_input_check = gets.chomp
 
       while user_input_check != "quit"
@@ -96,6 +106,13 @@ class Game
           user_input_check = "quit"
         end
       end
+
+      while letters_guessed.include? user_input
+        puts "You already guessed that letter!"
+        puts "Guess a different letter"
+        user_input = gets.chomp
+      end
+      letters_guessed.push(user_input)
 
       if random_word.include?(user_input)
         #change the word_state to the new version with the updated letter
@@ -132,6 +149,7 @@ class Game
         board.print_board("win")
       end
       #puts shown_answer
+
     end
   end
 end

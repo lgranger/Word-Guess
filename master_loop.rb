@@ -70,10 +70,6 @@ class Game
     end
     shown_answer = word_state.join(",").tr(",",'')
 
-    #puts shown_answer
-
-    #puts random_word
-
 
     while guessing == true
       print %x{clear}
@@ -102,7 +98,7 @@ class Game
           puts "Please guess a letter, numbers aren't letters!"
           user_input_check = gets.chomp
         else
-          user_input = user_input_check
+          user_input = user_input_check.downcase
           user_input_check = "quit"
         end
       end

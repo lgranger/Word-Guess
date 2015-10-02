@@ -1,11 +1,11 @@
-* Need to return list of already guessed letters
-* Need to sanitize user input
-* Add more words to random work
+* Need to return list of already guessed letters - DONE
+* Need to sanitize user input - DONE
+* Add more words to random work - DONE
 
 Optional:
-* Don't penalize for guessing the same letter more than once
+* Don't penalize for guessing the same letter more than once - DONE
 * Add difficulty levels (harder levels have words with more letters)
-* Allow the user to enter a whole word as input (of they think they know the answer)
+* Allow the user to enter a whole word as input (of they think they know the answer) - DONE
 
 even moar optional:
 * make the guess into a separate class

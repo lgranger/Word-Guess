@@ -1,0 +1,7 @@
+word_state << this will mean the word being guessed, as represented to the user. ex: "_ _ _ _" or "_ a _ _"
+
+guess_word << the word that the user is guessing. ex: "soup" or "bark"
+
+guess_word_array << where to store and pull from the words possible as guess_words for the game
+
+cat_state << var representing the current state & ascii output of the nyan cat

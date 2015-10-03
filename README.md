@@ -1,4 +1,3 @@
-# Running Jessica and Lauren's Word-Guess Game
 To run the game, just call "ruby master_loop.rb" from the Terminal
 
 

@@ -1,4 +1,4 @@
-<<<<<<< HEAD
+
 ✅ Need to return list of already guessed letters
 ✅ Need to sanitize user input
 ✅ Add more words to random word array
@@ -10,3 +10,5 @@ Optional:
 
 even moar optional:
 * make the guess into a separate class
+
+be awesome!

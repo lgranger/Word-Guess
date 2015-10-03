@@ -89,6 +89,7 @@ class Game
     letters_guessed = []
     guessing = true
     word_state = []
+    alphabet = ('a'..'z').to_a
     # Prompts the user for difficulty choice and determines random word based on choice
     puts "What difficulty would you like to play?"
     puts "1. Easy"
@@ -176,8 +177,9 @@ class Game
         elsif user_input_check.length != 1
           puts "One letter only please!"
           user_input_check = gets.chomp
-        elsif user_input_check.to_i.to_s != "0"
-          puts "Please guess a letter, numbers aren't letters!"
+        # Only accepts alphabet characters - not numbers or symbols
+        elsif !alphabet.include? user_input_check.downcase
+          puts "Please guess a letter, numbers and symbols won't work!"
           user_input_check = gets.chomp
         else
           user_input = user_input_check.downcase

@@ -8,7 +8,9 @@ Optional:
 ✅ Add difficulty levels (harder levels have words with more letters)
 ✅ Allow the user to enter a whole word as input (of they think they know the answer)
 
-even moar optional:
+Monday List:
+* Fix bugs
+  [ ] if you win first and then loose you get both win and loose, not just loose
+  [ ] typing easy, medium, or hard brings up the "that wasn't on the list"
 * make the guess into a separate class
-
-be awesome!
+* rename?

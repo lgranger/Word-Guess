@@ -217,25 +217,22 @@ class Game
     end
   end
 
+  def create_display
+    @random_word.length.times do
+      @word_state.push(" _ ")
+    end
+    @shown_answer = @word_state.join(",").tr(",",'')
+  end
+
 
   # This is the main gameplay loop
   def guess
     # Create a new GameBoard
     board = GameBoard.new
-    # Set initial variables
-    @cat_state = 6
-    #letters_guessed = []
-    @guessing = true
-    #Prompts the user for difficulty choice and determines random word based on choice
+    # Calls the set difficulty method and takes the user input for difficulty
     set_difficulty
-
     # Creates an array of underscores for the number of letters in @random_word
-    @random_word.length.times do
-      @word_state.push(" _ ")
-    end
-
-    @shown_answer = @word_state.join(",").tr(",",'')
-
+    create_display
     # While the user still needs to make guesses (hasn't won or lost)
     while @guessing == true
       # clears the screen
@@ -249,15 +246,14 @@ class Game
       puts "And replace GUESS with your guess."
       print "Guess a letter: "
       @user_input_check = gets.chomp
-
-
       # Call the check user input method
       check_user_input
       check_letters_guessed
       check_guess_correct
-
     end
+
   end
+  
 end
 
 # Starts a game when you run master_loop.rb

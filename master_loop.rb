@@ -1,5 +1,7 @@
 # Required to create the game board
 require './game_board_v2.rb'
+# for debugging
+require 'pry'
 
 class Game
   attr_accessor :game_status, :cat_state
@@ -96,12 +98,13 @@ class Game
     puts "2. Medium"
     puts "3. Hard"
     difficulty = gets.chomp.downcase
-    case difficulty
-    when "1" || "easy"
+
+    if difficulty == "1" || difficulty == "easy"
+      puts "I made it here"
       random_word = random_word_gen("easy")
-    when "2" || "medium"
+    elsif difficulty == "2" || difficulty == "medium"
       random_word = random_word_gen("medium")
-    when "3" || "hard"
+    elsif difficulty == "3" || difficulty == "hard"
       random_word = random_word_gen("hard")
     else
       puts "That wasn't on the list. Try the medium level."

@@ -1,7 +1,5 @@
 # Required to create the game board
 require './game_board.rb'
-# for debugging
-require 'pry'
 
 class Game
   attr_accessor :game_status, :cat_state
@@ -253,7 +251,7 @@ class Game
     end
 
   end
-  
+
 end
 
 # Starts a game when you run master_loop.rb

@@ -148,7 +148,7 @@ class Game
         puts "One letter only please!"
         @user_input_check = gets.chomp
       # Only accepts alphabet characters - not numbers or symbols
-    elsif !('a'..'z').to_a.include? @user_input_check.downcase
+      elsif !('a'..'z').to_a.include? @user_input_check.downcase
         puts "Please guess a letter, numbers and symbols won't work!"
         @user_input_check = gets.chomp
       else
@@ -253,7 +253,7 @@ class Game
     end
 
   end
-  
+
 end
 
 # Starts a game when you run master_loop.rb

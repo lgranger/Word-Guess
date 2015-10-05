@@ -56,22 +56,42 @@ class Game
     end
   end
 
-  # random_word_gen generates a random word for the game
-  def random_word_gen (difficulty)
+  # @random_word_gen generates a random word for the game
+  def random_word_gen
     # array of random words, sorted into difficulty levels (all cat related!!!)
 
-    easy_words = ["kitten", "litter", "catnip", "mouse", "mice", "tuna", "birds", "catnap", "whiskers", "meows", "tabby"]
-    medium_words = ["lion", "tiger", "leopard", "water", "catcall", "catwalk", "copycat", "hellcat", "tomcat", "string", "scratch", "companion"]
-    hard_words = ["lynx", "cheetah", "feline", "purr", "liger", "purr",  "hairball", "furball", "calico", "frisky", "purring", "siamese"]
+    easy_array = ["kitten", "litter", "catnip", "mouse", "mice", "tuna", "birds", "catnap", "whiskers", "meows", "tabby"]
+    medium_array = ["lion", "tiger", "leopard", "water", "catcall", "catwalk", "copycat", "hellcat", "tomcat", "string", "scratch", "companion"]
+    hard_array = ["lynx", "cheetah", "feline", "purr", "liger", "purr",  "hairball", "furball", "calico", "frisky", "purring", "siamese"]
 
-    # Sets the random word based on the chosen difficulty
-    case difficulty
-    when "easy"
-      random_word = easy_words[rand(easy_words.length)]
-    when "medium"
-      random_word = easy_words[rand(medium_words.length)]
-    when "hard"
-      random_word = easy_words[rand(hard_words.length)]
+    # Sets the random word based on the chosen difficuly
+      @easy_word = easy_array[rand(0...easy_array.length)]
+      @medium_word = medium_array[rand(0...medium_array.length)]
+      @hard_word = hard_array[rand(0...hard_array.length)]
+
+  end
+
+  def set_difficulty
+    # Prompts the user for difficulty choice and determines random word based on choice
+    puts "What difficulty would you like to play?"
+    puts "1. Easy"
+    puts "2. Medium"
+    puts "3. Hard"
+    difficulty = gets.chomp.downcase
+
+    random_word_gen
+
+    if difficulty == "1" || difficulty == "easy"
+      @random_word = @easy_word
+    elsif difficulty == "2" || difficulty == "medium"
+      @random_word = @medium_word
+    elsif difficulty == "3" || difficulty == "hard"
+      @random_word = @hard_word
+    else
+      puts "That wasn't on the list. Try the medium level."
+      # waits 3 seconds before clearing the screen
+      sleep(3)
+      @random_word = @medium_word
     end
   end
 
@@ -85,30 +105,11 @@ class Game
     guessing = true
     word_state = []
     alphabet = ('a'..'z').to_a
-    # Prompts the user for difficulty choice and determines random word based on choice
-    puts "What difficulty would you like to play?"
-    puts "1. Easy"
-    puts "2. Medium"
-    puts "3. Hard"
-    difficulty = gets.chomp.downcase
 
-    if difficulty == "1" || difficulty == "easy"
-      puts "I made it here"
-      random_word = random_word_gen("easy")
-    elsif difficulty == "2" || difficulty == "medium"
-      random_word = random_word_gen("medium")
-    elsif difficulty == "3" || difficulty == "hard"
-      random_word = random_word_gen("hard")
-    else
-      puts "That wasn't on the list. Try the medium level."
-      # waits 3 seconds before clearing the screen
-      sleep(3)
-      random_word = random_word_gen("medium")
-    end
-    puts random_word
+    set_difficulty
 
-    # Creates an array of underscores for the number of letters in random_word
-    random_word.length.times do
+    # Creates an array of underscores for the number of letters in @random_word
+    @random_word.length.times do
       word_state.push(" _ ")
     end
     shown_answer = word_state.join(",").tr(",",'')
@@ -141,7 +142,7 @@ class Game
       # if the user wants to guess a whole word, they can type "word = GUESS"
       # Guessing an incorrect word will still decrement the number of guesses remaining
       while user_input_check != "quit"
-        if user_input_check.downcase == "word = " + random_word
+        if user_input_check.downcase == "word = " + @random_word
           # if the user guesses the word correctly, runs the win game logic
           puts "You won the game!"
           guessing = "false"
@@ -164,7 +165,7 @@ class Game
           if @cat_state == 0
             puts "\n\n"
             puts "You lose! You are the worst!"
-            puts "The word was #{random_word}"
+            puts "The word was #{@random_word}"
             board.print_board(0)
             guessing = "false"
             play_again_prompt
@@ -191,9 +192,9 @@ class Game
       # Adds the guessed letter to the letters_guessed array
       letters_guessed.push(user_input)
       # if the guess is correct, update the word_state with the guessed letter
-      if random_word.include?(user_input)
+      if @random_word.include?(user_input)
         word_state.length.times do |letter|
-          if random_word[letter] == user_input
+          if @random_word[letter] == user_input
             word_state[letter] = " " + user_input + " "
           end
         end
@@ -208,7 +209,7 @@ class Game
           @game_status = true
           puts "\n\n"
           puts "You lose! You are the worst!"
-          puts "The word was #{random_word}"
+          puts "The word was #{@random_word}"
           board.print_board(0)
           guessing = "false"
           #@game_status = "loss"
@@ -216,7 +217,7 @@ class Game
       end
       shown_answer = word_state.join(",").tr(",",'')
       #puts shown_answer
-      if shown_answer.tr(" ",'') == random_word
+      if shown_answer.tr(" ",'') == @random_word
 
         @game_status = true
         puts "\n\n"

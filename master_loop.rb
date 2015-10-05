@@ -58,28 +58,21 @@ class Game
 
   # random_word_gen generates a random word for the game
   def random_word_gen (difficulty)
-    # array of random words (all cat related!!!)
+    # array of random words, sorted into difficulty levels (all cat related!!!)
 
-    random_words = ["kitten", "litter", "catnip", "mouse", "mice", "tuna", "birds", "lynx", "cheetah", "lion", "tiger", "leopard", "feline", "purr", "water", "liger", "catcall", "catnap", "catwalk", "copycat", "hellcat", "tabby", "tomcat", "purr", "string", "scratch", "companion", "hairball", "furball", "calico", "frisky", "purring", "siamese", "whiskers", "meows"]
+    easy_words = ["kitten", "litter", "catnip", "mouse", "mice", "tuna", "birds", "catnap", "whiskers", "meows", "tabby"]
+    medium_words = ["lion", "tiger", "leopard", "water", "catcall", "catwalk", "copycat", "hellcat", "tomcat", "string", "scratch", "companion"]
+    hard_words = ["lynx", "cheetah", "feline", "purr", "liger", "purr",  "hairball", "furball", "calico", "frisky", "purring", "siamese"]
 
-    # defines a random word based on the user chosen difficulty
-    rand_array =[]
-    3.times do
-      randomize = random_words[rand(0...random_words.length)]
-      rand_array.push(randomize)
-    end
-    # sorts the random array by length
-    rand_array = rand_array.sort_by {|x| x.length}
     # Sets the random word based on the chosen difficulty
     case difficulty
     when "easy"
-      random_word = rand_array[0]
+      random_word = easy_words[rand(easy_words.length)]
     when "medium"
-      random_word = rand_array[1]
+      random_word = easy_words[rand(medium_words.length)]
     when "hard"
-      random_word = rand_array[2]
+      random_word = easy_words[rand(hard_words.length)]
     end
-    #return random_word
   end
 
   # This is the main gameplay loop

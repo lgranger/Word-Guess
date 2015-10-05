@@ -10,7 +10,7 @@ Optional:
 
 Monday List:
 * Fix bugs
-  [ ] if you win first and then loose you get both win and loose, not just loose
-  [ ] typing easy, medium, or hard brings up the "that wasn't on the list"
+  [?] if you win first and then loose you get both win and loose, not just loose
+  [X] typing easy, medium, or hard brings up the "that wasn't on the list"
 * make the guess into a separate class
 * rename?

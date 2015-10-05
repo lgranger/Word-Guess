@@ -9,6 +9,8 @@ class Game
   def initialize
     @game_status = false
     @cat_state = 6
+    @letters_guessed = []
+    @word_state = []
   end
 
   # Play method, initiates the game prompt and prompts the user to play again if they have already played
@@ -95,46 +97,48 @@ class Game
     end
   end
 
+def set_board
+  # Create a new GameBoard
+  board = GameBoard.new
+  # Creates an array of underscores for the number of letters in @random_word
+  @random_word.length.times do
+    @word_state.push(" _ ")
+  end
+  shown_answer = @word_state.join(",").tr(",",'')
+  # clears the board
+  print %x{clear}
+  # prints the blanks/letters
+  puts shown_answer
+  # Displays letters already guessed
+  if @letters_guessed == []
+    puts "You have not guessed any letters yet"
+  else
+    print "So far you have guessed: "
+    @letters_guessed.each do |i|
+      print " #{i} "
+    end
+    print "\n"
+  end
+  # prints the board (with Nyan cat depending on # of guesses)
+  board.print_board(@cat_state)
+  puts "If you think you know the whole word, type \"word = GUESS\""
+  puts "And replace GUESS with your guess."
+  print "Guess a letter: "
+end
+
   # This is the main gameplay loop
   def guess
-    # Create a new GameBoard
-    board = GameBoard.new
     # Set initial variables
     @cat_state = 6
-    letters_guessed = []
     guessing = true
-    word_state = []
     alphabet = ('a'..'z').to_a
 
     set_difficulty
 
-    # Creates an array of underscores for the number of letters in @random_word
-    @random_word.length.times do
-      word_state.push(" _ ")
-    end
-    shown_answer = word_state.join(",").tr(",",'')
-
     # While the user still needs to make guesses (hasn't won or lost)
     while guessing == true
       # clears the screen
-      print %x{clear}
-      # prints the blanks/letters
-      puts shown_answer
-      # Displays letters already guessed
-      if letters_guessed == []
-        puts "You have not guessed any letters yet"
-      else
-        print "So far you have guessed: "
-        letters_guessed.each do |i|
-          print " #{i} "
-        end
-        print "\n"
-      end
-      # prints the board (with Nyan cat depending on # of guesses)
-      board.print_board(@cat_state)
-      puts "If you think you know the whole word, type \"word = GUESS\""
-      puts "And replace GUESS with your guess."
-      print "Guess a letter: "
+    set_board
 
       user_input_check = gets.chomp
 
@@ -154,7 +158,7 @@ class Game
           puts "Your guess was wrong!"
           puts shown_answer
           print "So far you have guessed: "
-          letters_guessed.each do |i|
+          @letters_guessed.each do |i|
             print " #{i} "
           end
           board.print_board(@cat_state)
@@ -184,18 +188,18 @@ class Game
         end
       end
       # Make sure the user hasn't already guessed a letter
-      while letters_guessed.include? user_input
+      while @letters_guessed.include? user_input
         puts "You already guessed that letter!"
         puts "Guess a different letter"
         user_input = gets.chomp
       end
-      # Adds the guessed letter to the letters_guessed array
-      letters_guessed.push(user_input)
+      # Adds the guessed letter to the @letters_guessed array
+      @letters_guessed.push(user_input)
       # if the guess is correct, update the word_state with the guessed letter
       if @random_word.include?(user_input)
-        word_state.length.times do |letter|
+        @word_state.length.times do |letter|
           if @random_word[letter] == user_input
-            word_state[letter] = " " + user_input + " "
+            @word_state[letter] = " " + user_input + " "
           end
         end
       else
@@ -215,7 +219,7 @@ class Game
           #@game_status = "loss"
         end
       end
-      shown_answer = word_state.join(",").tr(",",'')
+      shown_answer = @word_state.join(",").tr(",",'')
       #puts shown_answer
       if shown_answer.tr(" ",'') == @random_word
 
